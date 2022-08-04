@@ -9,6 +9,8 @@ import { ExistValidator } from './etc/validator/exist-validator';
 import { UniqueValidator } from './etc/validator/unique-validator';
 import { AuthModule } from './auth/auth.module';
 import { ProdukModule } from './produk/produk.module';
+import { Produk } from './produk/entities/produk.entity';
+import { KonsumenModule } from './konsumen/konsumen.module';
 
 @Module({
   imports: [
@@ -20,12 +22,13 @@ import { ProdukModule } from './produk/produk.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
       database: process.env.MYSQL_DB,
-      entities: [User],
+      entities: [User, Produk],
       synchronize: true,
     }),
     UserModule,
     AuthModule,
     ProdukModule,
+    KonsumenModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistValidator, UniqueValidator],
