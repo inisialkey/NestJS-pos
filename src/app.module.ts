@@ -15,6 +15,9 @@ import { KonsumenModule } from './konsumen/konsumen.module';
 import { RekeningModule } from './rekening/rekening.module';
 import { Rekening } from './rekening/entities/rekening.entity';
 import { PenjualanModule } from './penjualan/penjualan.module';
+import { Penjualan } from './penjualan/entities/penjualan.entity';
+import { PenjualanItem } from './penjualan/entities/penjualan-item.entity';
+import { PenjualanBayar } from './penjualan/entities/penjualan-bayar.entity';
 
 @Module({
   imports: [
@@ -26,7 +29,15 @@ import { PenjualanModule } from './penjualan/penjualan.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
       database: process.env.MYSQL_DB,
-      entities: [User, Produk, Konsumen, Rekening],
+      entities: [
+        User,
+        Produk,
+        Konsumen,
+        Rekening,
+        Penjualan,
+        PenjualanItem,
+        PenjualanBayar,
+      ],
       synchronize: true,
     }),
     UserModule,
