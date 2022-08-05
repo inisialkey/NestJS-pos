@@ -13,6 +13,8 @@ import { Produk } from './produk/entities/produk.entity';
 import { Konsumen } from './konsumen/entities/konsumen.entity';
 import { KonsumenModule } from './konsumen/konsumen.module';
 import { RekeningModule } from './rekening/rekening.module';
+import { Rekening } from './rekening/entities/rekening.entity';
+import { PenjualanModule } from './penjualan/penjualan.module';
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { RekeningModule } from './rekening/rekening.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
       database: process.env.MYSQL_DB,
-      entities: [User, Produk, Konsumen],
+      entities: [User, Produk, Konsumen, Rekening],
       synchronize: true,
     }),
     UserModule,
@@ -32,6 +34,7 @@ import { RekeningModule } from './rekening/rekening.module';
     ProdukModule,
     KonsumenModule,
     RekeningModule,
+    PenjualanModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistValidator, UniqueValidator],

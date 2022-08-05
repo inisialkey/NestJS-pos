@@ -1,5 +1,6 @@
 import { Konsumen } from 'src/konsumen/entities/konsumen.entity';
 import { Produk } from 'src/produk/entities/produk.entity';
+import { Rekening } from 'src/rekening/entities/rekening.entity';
 import {
   Column,
   CreateDateColumn,
@@ -37,4 +38,7 @@ export class User {
 
   @OneToMany(() => Konsumen, (kons) => kons.id)
   konsumen: Konsumen;
+
+  @OneToMany(() => Rekening, (rek) => rek.id)
+  rekening: Rekening;
 }
