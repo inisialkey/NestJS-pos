@@ -1,3 +1,4 @@
+import { Konsumen } from 'src/konsumen/entities/konsumen.entity';
 import { Produk } from 'src/produk/entities/produk.entity';
 import {
   Column,
@@ -33,4 +34,7 @@ export class User {
 
   @OneToMany(() => Produk, (prod) => prod.id)
   produk: Produk;
+
+  @OneToMany(() => Konsumen, (kons) => kons.id)
+  konsumen: Konsumen;
 }

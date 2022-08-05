@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { CreateKonsumanDto } from './dto/create-konsuman.dto';
-import { UpdateKonsumanDto } from './dto/update-konsuman.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateKonsumenDto } from './dto/create-konsumen.dto';
+import { UpdateKonsumenDto } from './dto/update-konsumen.dto';
+import { Konsumen } from './entities/konsumen.entity';
 
 @Injectable()
 export class KonsumenService {
-  create(createKonsumanDto: CreateKonsumanDto) {
-    return 'This action adds a new konsuman';
+  constructor(
+    @InjectRepository(Konsumen) private konsumenRepo: Repository<Konsumen>,
+  ) {}
+  create(createKonsumenDto: CreateKonsumenDto) {
+    return this.konsumenRepo.save(createKonsumenDto);
   }
 
   findAll() {
-    return `This action returns all konsumen`;
+    return this.konsumenRepo.find({ relations: ['user'] });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} konsuman`;
+    return this.konsumenRepo.findOne(id);
   }
 
-  update(id: number, updateKonsumanDto: UpdateKonsumanDto) {
-    return `This action updates a #${id} konsuman`;
+  update(id: number, updateKonsumenDto: UpdateKonsumenDto) {
+    return this.konsumenRepo.save(updateKonsumenDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} konsuman`;
+  async remove(id: number) {
+    const konsumen = await this.konsumenRepo.findOne(id);
+    return this.konsumenRepo.remove(konsumen);
   }
 }
